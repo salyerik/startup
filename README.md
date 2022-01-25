@@ -1,4 +1,4 @@
-# This is a Landing page
+# This is the Landing page
 [Link to page⬅️][link]
 ## I used here:
 * HTML (BEM, PUG)
