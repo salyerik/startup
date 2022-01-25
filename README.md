@@ -1,5 +1,5 @@
 # This is a Landing page
-[Link to page⬅️](1)
+[Link to page⬅️][link]
 ## I used here:
 * HTML (BEM, PUG)
 * CSS (SASS)
@@ -12,9 +12,9 @@
 * NPM
 * GIT
 
-[Link to page⬅️](1)
+[Link to page⬅️][link]
 
 ### Mobile Optimization
-![](img/page-speed.jpg)
+<img src="img/page-speed.jpg" alt="img" style="height: 400px;">
 
-[1]: (https://steterik.github.io/startup/)
+[link]: https://steterik.github.io/startup/
