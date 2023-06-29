@@ -1,4 +1,4 @@
-# This is the Landing page
+# This is a Landing page
 
 ## I used here:
 * HTML (BEM)
