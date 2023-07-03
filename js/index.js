@@ -5,16 +5,17 @@ if (animationElements.length > 0) {
 		for (let i = 0; i < animationElements.length; i++) {
 			const element = animationElements[i];
 			const offsetHeight = element.offsetHeight;
-			const topSetHeight =
-				element.getBoundingClientRect().top + window.scrollY ||
-				document.documentElement.scrollTop;
-			let l = window.innerHeight - offsetHeight / 4;
-			offsetHeight > window.innerHeight &&
-				(l = window.innerHeight - window.innerHeight / 4),
-				scrollY > topSetHeight - l && scrollY < topSetHeight + offsetHeight
-					? element.classList.add('active')
-					: element.classList.contains('reply') &&
-					  element.classList.remove('active');
+			const topSetHeight = element.getBoundingClientRect().top + window.scrollY;
+			let totalHeight = window.innerHeight - offsetHeight / 4;
+			if (offsetHeight > window.innerHeight) {
+				totalHeight = window.innerHeight - window.innerHeight / 4;
+			}
+			if (
+				scrollY > topSetHeight - totalHeight &&
+				scrollY < topSetHeight + offsetHeight
+			) {
+				element.classList.add('active');
+			}
 		}
 	};
 	window.addEventListener('scroll', animate);
@@ -45,16 +46,12 @@ const tabsBtn = document.querySelectorAll('.tabs__btn');
 const tabsBlock = document.querySelectorAll('.tabs__block');
 tabsBtn.forEach(tabBtn => {
 	tabBtn.addEventListener('click', () => {
-		const a = document.querySelector(tabBtn.getAttribute('data-tab'));
+		const dataTab = document.querySelector(tabBtn.getAttribute('data-tab'));
 		if (!tabBtn.classList.contains('active')) {
-			tabsBtn.forEach(e => {
-				e.classList.remove('active');
-			});
-			tabsBlock.forEach(e => {
-				e.classList.remove('active');
-			});
+			tabsBtn.forEach(el => el.classList.remove('active'));
+			tabsBlock.forEach(el => el.classList.remove('active'));
 			tabBtn.classList.add('active');
-			a.classList.add('active');
+			dataTab.classList.add('active');
 		}
 	});
 });
@@ -64,16 +61,10 @@ const anchors = document.querySelectorAll('a[href*="#"]');
 for (let anchor of anchors)
 	anchor.addEventListener('click', e => {
 		e.preventDefault();
-		const block = anchor.getAttribute('href');
 		document
-			.querySelector(block)
+			.querySelector(anchor.getAttribute('href'))
 			.scrollIntoView({ behavior: 'smooth', block: 'start' });
 	});
-window.onscroll = () => {
-	document.body.scrollTop > 900 || document.documentElement.scrollTop > 900
-		? document.querySelector('.header__menu').classList.add('active')
-		: document.querySelector('.header__menu').classList.remove('active');
-};
 
 // Swiper-slider
 const swiper = new Swiper('.block2__slider', {
